@@ -70,6 +70,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void processRegistration() {
+        // disable the button until the registration is over
         btnSubmitRegistration.setEnabled(false);
 
         final String email = etEmail.getText().toString();
@@ -86,8 +87,7 @@ public class RegisterActivity extends AppCompatActivity {
                             proceedAutoLogin(email, password);
                         } else {
                             btnSubmitRegistration.setEnabled(true);
-                            Snackbar.make(findViewById(R.id.layoutRegister),
-                                    "Registration failed", Snackbar.LENGTH_INDEFINITE).show();
+                            Snackbar.make(findViewById(R.id.layoutRegister), "Registration failed", Snackbar.LENGTH_INDEFINITE).show();
                         }
                     }
 
@@ -106,6 +106,10 @@ public class RegisterActivity extends AppCompatActivity {
             public void onCompletion(Boolean input) {
                 if (input) {
                     Intent i = new Intent(RegisterActivity.this, HomeActivity.class);
+                    /*
+                    alte Activity von Task löschen, damit die neue Task als
+                    letztes von der Stack weggenommen wird.
+                     */
                     i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(i);
                     finish();

@@ -8,15 +8,13 @@
     android:orientation="vertical"
     android:id="@+id/loginLayout">
 
-
     <EditText
         android:hint="Email"
         android:id="@+id/email"
         android:text="test12@test.com"
         android:inputType="textEmailAddress"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+        android:layout_height="wrap_content" />
 
     <EditText
         android:hint="password"

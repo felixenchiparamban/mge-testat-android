@@ -2,10 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ch.hsr.mge.gadgeothek">
 
-    <!-- To auto-complete the email text field in the login form with the user's emails -->
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <uses-permission android:name="android.permission.READ_PROFILE" />
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <!-- Damit die App über Internet auf dem Server zugriffen kann. -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -23,13 +20,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!-- für fragment nicht, weil es automatisch erstellt wird -->
         <activity
             android:name=".RegisterActivity"
             android:parentActivityName=".LoginActivity" />
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".LoansActivity" android:parentActivityName=".HomeActivity"/>
+        <activity android:name=".ReservationActivity" android:parentActivityName=".HomeActivity"></activity>
     </application>
 
 </manifest>
