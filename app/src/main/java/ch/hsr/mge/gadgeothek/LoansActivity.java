@@ -8,18 +8,17 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import ch.hsr.mge.gadgeothek.adapter.ListAdapter;
 import ch.hsr.mge.gadgeothek.domain.Loan;
 import ch.hsr.mge.gadgeothek.service.Callback;
 import ch.hsr.mge.gadgeothek.service.LibraryService;
 
 public class LoansActivity extends AppCompatActivity {
 
-    private List<Loan> loanList;
-
     private RecyclerView recyclerView;
-    private TextView textViewEmpty;
     private RecyclerView.LayoutManager layoutManager;
     private ListAdapter adapter;
 
@@ -31,32 +30,22 @@ public class LoansActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Loans");
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        textViewEmpty = (TextView) findViewById(R.id.empty_view);
-
         recyclerView.setHasFixedSize(true);
         layoutManager  = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        fetchLoans();
-
-        // show that the list is empty
-        if(loanList == null){
-            recyclerView.setVisibility(View.GONE);
-            textViewEmpty.setVisibility(View.VISIBLE);
-        } else {
-            recyclerView.setVisibility(View.VISIBLE);
-            textViewEmpty.setVisibility(View.GONE);
-        }
-
-        adapter = new ListAdapter(loanList);
+        adapter = new ListAdapter();
         recyclerView.setAdapter(adapter);
+
+        fetchLoans();
     }
 
     private void fetchLoans() {
         LibraryService.getLoansForCustomer(new Callback<List<Loan>>() {
             @Override
             public void onCompletion(List<Loan> input) {
-                loanList = input;
+                adapter.setLoanList(input);
+                adapter.notifyDataSetChanged();
             }
 
             @Override
