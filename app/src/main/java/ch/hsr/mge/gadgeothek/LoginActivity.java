@@ -93,7 +93,7 @@ public class LoginActivity extends AppCompatActivity {
             // form field with an error.
             focusView.requestFocus();
         } else {
-            // Show a progress spinner, and kick off a background task to
+            // disable the sign in button and
             // perform the user login attempt.
             btnSignIn.setEnabled(false);
             LibraryService.login(email, password, new Callback<Boolean>() {

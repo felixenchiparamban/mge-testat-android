@@ -13,7 +13,8 @@
         android:layout_height="wrap_content"
         android:hint="Email"
         android:inputType="textEmailAddress"
-        android:id="@+id/newEmail"/>
+        android:id="@+id/newEmail"
+        android:layout_marginTop="100dp"/>
 
     <EditText
         android:layout_width="match_parent"
