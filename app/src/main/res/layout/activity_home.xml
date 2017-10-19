@@ -7,28 +7,103 @@
     tools:context="ch.hsr.mge.gadgeothek.HomeActivity"
     android:id="@+id/layoutContainer">
 
+
     <TextView
+        android:id="@+id/tvAppTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome to Gadgeothek"
-        android:id="@+id/tvWelcome"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="150dp"
-        android:typeface="serif"
-        android:textSize="30dp"/>
+        android:text="Welcome to Gadgeothek"
+        android:textStyle="bold"
+        android:textSize="28sp"/>
 
-    <Button
+    <ImageView
+        android:id="@+id/ivTeaser"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:layout_marginBottom="@dimen/activity_horizontal_margin"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnLoan"
-        android:text="Loans"
-        android:layout_below="@+id/tvWelcome" />
+        android:layout_height="250dp"
+        android:layout_below="@id/tvAppTitle"
+        android:src="@drawable/gadgets"/>
 
-    <Button
+    <!-- A CardView that contains a TextView -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnReservation"
-        android:layout_below="@id/btnLoan"
-        android:text="Reservation"/>
+        android:layout_height="match_parent"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:orientation="horizontal"
+        android:layout_below="@id/ivTeaser">
+
+        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/loansCard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:layout_margin="4dp"
+            card_view:cardCornerRadius="4dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="12dp">
+
+                <ImageView
+                    android:id="@+id/ivLoan"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/ic_loans"
+                    android:layout_marginRight="16dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/ivLoan"
+                    android:text="Loans"
+                    android:textAlignment="center"
+                    android:textSize="25sp" />
+
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/reservationsCard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            card_view:cardCornerRadius="4dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="12dp">
+
+                <ImageView
+                    android:id="@+id/ivReservations"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_alignParentTop="true"
+                    android:src="@drawable/ic_reservations" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/ivReservations"
+                    android:text="Reservations"
+                    android:textAlignment="center"
+                    android:textSize="24sp" />
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+
+
 
 </RelativeLayout>

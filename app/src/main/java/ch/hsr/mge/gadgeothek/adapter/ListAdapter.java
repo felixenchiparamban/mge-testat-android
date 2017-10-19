@@ -34,7 +34,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         if(loanList.isEmpty()){
-            holder.emptyView.setEnabled(true);
+            holder.emptyView.setVisibility(View.VISIBLE);
         } else {
             final Loan loan = loanList.get(position);
             //holder.emptyView.setEnabled(false);

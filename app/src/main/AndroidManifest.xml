@@ -28,8 +28,10 @@
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".LoansActivity" android:parentActivityName=".HomeActivity"/>
-        <activity android:name=".ReservationActivity" android:parentActivityName=".HomeActivity"></activity>
+        <activity android:name=".LoansActivity" android:parentActivityName=".HomeActivity"
+            android:label="@string/title_activity_loans"/>
+        <activity android:name=".ReservationActivity" android:parentActivityName=".HomeActivity"
+            android:label="@string/title_activity_reservations"></activity>
     </application>
 
 </manifest>
