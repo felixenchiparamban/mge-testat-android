@@ -50,7 +50,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="16dp">
+                android:padding="12dp">
 
                 <ImageView
                     android:id="@+id/ivLoan"
@@ -58,7 +58,7 @@
                     android:layout_height="100dp"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
-                    android:src="@drawable/loan"
+                    android:src="@drawable/ic_loans"
                     android:layout_marginRight="16dp" />
 
                 <TextView
@@ -75,31 +75,31 @@
         <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
             android:id="@+id/reservationsCard"
             android:layout_width="0dp"
-            android:layout_height="175dp"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="4dp"
+            android:layout_weight="1"
             card_view:cardCornerRadius="4dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="16dp">
+                android:padding="12dp">
 
                 <ImageView
+                    android:id="@+id/ivReservations"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="100dp"
                     android:layout_alignParentTop="true"
-                    android:src="@android:drawable/ic_menu_sort_by_size"
-                    android:layout_marginRight="16dp" />
+                    android:src="@drawable/ic_reservations" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
+                    android:layout_below="@id/ivReservations"
                     android:text="Reservations"
                     android:textAlignment="center"
-                    android:textSize="25sp" />
+                    android:textSize="24sp" />
             </RelativeLayout>
         </android.support.v7.widget.CardView>
     </LinearLayout>
