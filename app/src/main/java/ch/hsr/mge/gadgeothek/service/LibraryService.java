@@ -27,6 +27,14 @@ public class LibraryService {
         return token != null;
     }
 
+    public static LoginToken getLoginToken() {
+        return token;
+    }
+
+    public static void setLoginToken(LoginToken loginToken){
+        LibraryService.token = loginToken;
+    }
+
     public static void login(String mail, String password, final Callback<Boolean> callback) {
         checkServerUrlSet();
         HashMap<String, String> parameter = new HashMap<>();

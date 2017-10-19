@@ -1,18 +1,18 @@
 package ch.hsr.mge.gadgeothek;
 
-import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import ch.hsr.mge.gadgeothek.service.Callback;
 import ch.hsr.mge.gadgeothek.service.LibraryService;
+import ch.hsr.mge.gadgeothek.service.LoginToken;
 import ch.hsr.mge.gadgeothek.util.ValidationUtil;
 
 public class LoginActivity extends AppCompatActivity {
@@ -23,6 +23,9 @@ public class LoginActivity extends AppCompatActivity {
     private EditText etPassword;
     private Button btnSignIn;
     private Button btnRegister;
+
+    private final String token = "token";
+    private final String customer = "customer";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,15 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        SharedPreferences sharedPreferencesLogin = getSharedPreferences("Login", MODE_PRIVATE);
+
+        if(sharedPreferencesLogin.getString(token, null) != null){
+            String toke = sharedPreferencesLogin.getString(token, null);
+            String customerID = sharedPreferencesLogin.getString(customer, null);
+            LibraryService.setLoginToken(new LoginToken(toke, customerID));
+            this.handleLoginCompletion(true);
+        }
     }
 
     private void attemptLogin() {
@@ -111,11 +123,21 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    private void attemptLogout(){
+
+    }
+
     private void handleLoginCompletion(Boolean success){
         isLoginOnProgress = false;
         btnSignIn.setEnabled(true);
 
         if (success) {
+            SharedPreferences sharedPreferencesLogin = getSharedPreferences("Login", MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferencesLogin.edit();
+            editor.putString(token, LibraryService.getLoginToken().getSecurityToken());
+            editor.putString(customer, LibraryService.getLoginToken().getCustomerId());
+            editor.commit();
+
             Intent i = new Intent(LoginActivity.this, HomeActivity.class);
             startActivity(i);
             finish();

@@ -4,6 +4,11 @@ public class LoginToken {
     private String customerId;
     private String securityToken;
 
+    public LoginToken(String securityToken, String customerId){
+        this.customerId = customerId;
+        this.securityToken = securityToken;
+    }
+
     public String getSecurityToken() {
         return securityToken;
     }
