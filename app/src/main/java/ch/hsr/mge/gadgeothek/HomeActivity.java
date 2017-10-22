@@ -61,11 +61,7 @@ public class HomeActivity extends AppCompatActivity {
             LibraryService.logout(new Callback<Boolean>() {
                 @Override
                 public void onCompletion(Boolean input) {
-                    SharedPreferences sharedPreferencesLogin = getSharedPreferences("Login", MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPreferencesLogin.edit();
-                    editor.putString(token, null);
-                    editor.putString(customer, null);
-                    editor.commit();
+                    removeSharedPreferences();
 
                     Intent i = new Intent(HomeActivity.this, LoginActivity.class);
                     startActivity(i);
@@ -80,5 +76,13 @@ public class HomeActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void removeSharedPreferences() {
+        SharedPreferences sharedPreferencesLogin = getSharedPreferences("Login", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferencesLogin.edit();
+        editor.putString(token, null);
+        editor.putString(customer, null);
+        editor.commit();
     }
 }
