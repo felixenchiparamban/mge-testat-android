@@ -4,20 +4,18 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 
 import ch.hsr.mge.gadgeothek.service.Callback;
 import ch.hsr.mge.gadgeothek.service.LibraryService;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private View btnLoans;
-    private View btnReserve;
+    private View viewLoans;
+    private View viewReserve;
 
     private final String token = "token";
     private final String customer = "customer";
@@ -27,10 +25,10 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        btnLoans = findViewById(R.id.loansCard);
-        btnReserve = findViewById(R.id.reservationsCard);
+        viewLoans = findViewById(R.id.loansCard);
+        viewReserve = findViewById(R.id.reservationsCard);
 
-        btnLoans.setOnClickListener(new View.OnClickListener(){
+        viewLoans.setOnClickListener(new View.OnClickListener(){
              @Override
             public void onClick(View view) {
                  Intent i = new Intent(HomeActivity.this, LoansActivity.class);
@@ -38,7 +36,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        btnReserve.setOnClickListener(new View.OnClickListener() {
+        viewReserve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(HomeActivity.this, ReservationActivity.class);

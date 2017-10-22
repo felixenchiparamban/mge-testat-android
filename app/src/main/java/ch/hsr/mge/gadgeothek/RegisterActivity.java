@@ -94,7 +94,6 @@ public class RegisterActivity extends AppCompatActivity {
                             Snackbar.make(findViewById(R.id.layoutRegister), "Registration failed", Snackbar.LENGTH_INDEFINITE).show();
                         }
                     }
-
                     @Override
                     public void onError(String message) {
                         btnSubmitRegistration.setEnabled(true);

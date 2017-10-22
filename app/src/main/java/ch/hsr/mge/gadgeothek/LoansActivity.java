@@ -44,8 +44,14 @@ public class LoansActivity extends AppCompatActivity {
         LibraryService.getLoansForCustomer(new Callback<List<Loan>>() {
             @Override
             public void onCompletion(List<Loan> input) {
-                adapter.setLoanList(input);
-                adapter.notifyDataSetChanged();
+                if(input == null || input.size() == 0){
+                    recyclerView.setVisibility(View.GONE);
+                    findViewById(R.id.empty_view).setVisibility(View.VISIBLE);
+                } else {
+                    adapter.setLoanList(input);
+                    adapter.notifyDataSetChanged();
+                    recyclerView.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override
