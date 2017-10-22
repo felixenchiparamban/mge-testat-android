@@ -7,15 +7,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import ch.hsr.mge.gadgeothek.service.Callback;
 import ch.hsr.mge.gadgeothek.service.LibraryService;
 import ch.hsr.mge.gadgeothek.service.LoginToken;
+import ch.hsr.mge.gadgeothek.util.LibraryServiceUtil;
 import ch.hsr.mge.gadgeothek.util.ValidationUtil;
 
 public class LoginActivity extends AppCompatActivity {
+
+    private static final String DEFAULT_SERVER = "DEFAULT_SERVER";
 
     private boolean isLoginOnProgress = false;
 
@@ -27,10 +33,12 @@ public class LoginActivity extends AppCompatActivity {
     private final String token = "token";
     private final String customer = "customer";
 
+    private Spinner spinnerServerUrls;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        LibraryService.setServerAddress("http://mge5.dev.ifs.hsr.ch/public");
+        //LibraryService.setServerAddress("http://mge5.dev.ifs.hsr.ch/public");
         setContentView(R.layout.activity_login);
 
         etSignIn = (EditText)findViewById(R.id.email);
@@ -50,6 +58,23 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(i);
+            }
+        });
+
+        spinnerServerUrls = (Spinner) findViewById(R.id.spServerUrls);
+        final ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, LibraryServiceUtil.generateServerUrls());
+        spinnerServerUrls.setAdapter(spinnerAdapter);
+        setServerAddress();
+
+        spinnerServerUrls.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                storeSelectedServer(position + 1);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
 
@@ -123,10 +148,6 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void attemptLogout(){
-
-    }
-
     private void handleLoginCompletion(Boolean success){
         isLoginOnProgress = false;
         btnSignIn.setEnabled(true);
@@ -154,5 +175,19 @@ public class LoginActivity extends AppCompatActivity {
         Snackbar.make(findViewById(R.id.loginLayout), message, Snackbar.LENGTH_INDEFINITE).show();
     }
 
+    private void setServerAddress() {
+        SharedPreferences prefs = getPreferences(MODE_PRIVATE);
+        int prefServer = prefs.getInt(DEFAULT_SERVER, LibraryServiceUtil.getDefaultServerValue());
+        LibraryService.setServerAddress(LibraryServiceUtil.getServerAddress(prefServer));
+        spinnerServerUrls.setSelection(prefServer - 1);
+    }
 
+    private void storeSelectedServer(int selectedServer) {
+        SharedPreferences prefs = getPreferences(MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putInt(DEFAULT_SERVER, selectedServer);
+        editor.commit();
+
+        LibraryService.setServerAddress(LibraryServiceUtil.getServerAddress(selectedServer));
+    }
 }
