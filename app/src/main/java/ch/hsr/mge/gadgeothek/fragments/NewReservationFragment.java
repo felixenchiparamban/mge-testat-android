@@ -46,12 +46,12 @@ public class NewReservationFragment extends DialogFragment {
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (!(context instanceof NewReservationDialogListener)) {
+    public void onAttach(Context activity) {
+        super.onAttach(activity);
+        if (!(activity instanceof NewReservationDialogListener)) {
             throw new IllegalStateException("Activity must implement NewReservationDialogListener");
         }
-        callback = (NewReservationDialogListener) context;
+        callback = (NewReservationDialogListener) activity;
     }
 
     @Override

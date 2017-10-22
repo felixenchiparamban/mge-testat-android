@@ -7,7 +7,6 @@
     tools:context="ch.hsr.mge.gadgeothek.HomeActivity"
     android:id="@+id/layoutContainer">
 
-
     <TextView
         android:id="@+id/tvAppTitle"
         android:layout_width="wrap_content"

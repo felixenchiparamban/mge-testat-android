@@ -42,6 +42,7 @@ public class ReservationActivity extends AppCompatActivity implements NewReserva
         rvReservations.setAdapter(reservationAdapter);
 
         FloatingActionButton fabNewReservation = (FloatingActionButton) findViewById(R.id.fabNewReservation);
+
         fabNewReservation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,6 +59,7 @@ public class ReservationActivity extends AppCompatActivity implements NewReserva
             public void onCompletion(List<Reservation> input) {
                 reservationAdapter.setReservations(input);
                 reservationAdapter.notifyDataSetChanged();
+                rvReservations.setVisibility(View.VISIBLE);
             }
 
             @Override
