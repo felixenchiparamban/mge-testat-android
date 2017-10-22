@@ -4,23 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ch.hsr.mge.gadgeothek.ReservationActivity">
+    tools:context="ch.hsr.mge.gadgeothek.ReservationActivity"
+    android:orientation="vertical">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerViewReservation"
-        android:scrollbars="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
-    </android.support.v7.widget.RecyclerView>
-
-    <android.support.design.widget.FloatingActionButton
         android:id="@+id/rvReservations"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical"
-        android:visibility="visible"/>
+        android:visibility="gone" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabNewReservation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@drawable/ic_add" />
 
     <TextView
         android:layout_width="match_parent"
