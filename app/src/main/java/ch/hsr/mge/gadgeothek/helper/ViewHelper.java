@@ -3,9 +3,13 @@ package ch.hsr.mge.gadgeothek.helper;
 import android.graphics.Color;
 import android.text.format.DateFormat;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
+
+import ch.hsr.mge.gadgeothek.domain.Gadget;
 
 public class ViewHelper {
     public static int getRandomColor() {
@@ -49,5 +53,17 @@ public class ViewHelper {
             default:
                 throw new IllegalArgumentException(String.format("%s is not valid", unit.toString()));
         }
+    }
+
+    public static String[] getGadgetsForDialog(List<Gadget> gadgets) {
+        List<String> gadgetsList = new ArrayList<>();
+        for (Gadget g : gadgets) {
+            gadgetsList.add(g.getName() + " - " + g.getCondition());
+        }
+        return gadgetsList.toArray(new String[gadgets.size()]);
+    }
+
+    public static String formatPrice(double price){
+        return String.format("Fr. %.2f", price);
     }
 }
