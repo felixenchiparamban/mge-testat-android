@@ -1,6 +1,7 @@
 package ch.hsr.mge.gadgeothek;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,6 +23,9 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText etStudentNumber;
 
     private Button btnSubmitRegistration;
+
+    private final String token = "token";
+    private final String customer = "customer";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,6 +109,13 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onCompletion(Boolean input) {
                 if (input) {
+
+                    SharedPreferences sharedPreferencesLogin = getSharedPreferences("Login", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferencesLogin.edit();
+                    editor.putString(token, LibraryService.getLoginToken().getSecurityToken());
+                    editor.putString(customer, LibraryService.getLoginToken().getCustomerId());
+                    editor.commit();
+
                     Intent i = new Intent(RegisterActivity.this, HomeActivity.class);
                     /*
                     alte Activity von Task löschen, damit die neue Task als
