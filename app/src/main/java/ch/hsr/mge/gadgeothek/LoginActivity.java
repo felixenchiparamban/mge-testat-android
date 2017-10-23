@@ -136,6 +136,7 @@ public class LoginActivity extends AppCompatActivity {
             LibraryService.login(email, password, new Callback<Boolean>() {
                 @Override
                 public void onCompletion(Boolean input) {
+
                     handleLoginCompletion(input);
                 }
 
