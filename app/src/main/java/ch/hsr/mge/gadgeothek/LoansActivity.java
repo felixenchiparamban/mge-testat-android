@@ -31,6 +31,7 @@ public class LoansActivity extends AppCompatActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
+
         layoutManager  = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 

@@ -36,6 +36,7 @@ public class ReservationActivity extends AppCompatActivity implements NewReserva
 
         recyclerView = (RecyclerView) findViewById(R.id.rvReservations);
         recyclerView.setHasFixedSize(true);
+
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
@@ -75,11 +76,16 @@ public class ReservationActivity extends AppCompatActivity implements NewReserva
         LibraryService.getReservationsForCustomer(new Callback<List<Reservation>>() {
             @Override
             public void onCompletion(List<Reservation> input) {
-                reservationAdapter.setReservations(input);
-                reservationAdapter.notifyDataSetChanged();
-                recyclerView.setVisibility(View.VISIBLE);
+                if(input == null || input.size() == 0){
+                    recyclerView.setVisibility(View.GONE);
+                    findViewById(R.id.empty_view).setVisibility(View.VISIBLE);
+                } else {
+                    reservationAdapter.setReservations(input);
+                    reservationAdapter.notifyDataSetChanged();
+                    recyclerView.setVisibility(View.VISIBLE);
+                    findViewById(R.id.empty_view).setVisibility(View.GONE);
+                }
             }
-
             @Override
             public void onError(String message) {
                 Log.d("Error fetchReservation:", message);
@@ -120,7 +126,6 @@ public class ReservationActivity extends AppCompatActivity implements NewReserva
                     reservationAdapter.notifyItemChanged(position);
                 }
             }
-
             @Override
             public void onError(String message) {
                 Snackbar.make(recyclerView, message, Snackbar.LENGTH_LONG).show();
