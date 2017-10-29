@@ -35,8 +35,7 @@ public class ViewHelper {
         if (remaining < 100) {
             return ViewTimeUnit.DAYS;
         }
-        remaining = remaining / 30;
-        if (remaining < 12) {
+        if (remaining < 365) {
             return ViewTimeUnit.MONTHS;
         }
         return ViewTimeUnit.YEARS;
