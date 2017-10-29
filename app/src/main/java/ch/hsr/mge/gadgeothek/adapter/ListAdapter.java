@@ -40,8 +40,8 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
             //holder.emptyView.setEnabled(false);
 
             holder.tvName.setText(loan.getGadget().getName());
-            holder.tvPrimary.setText(loan.getGadget().getManufacturer() + " " + loan.getGadget().getPrice());
-            holder.tvSecondary.setText(loan.getGadget().getInventoryNumber());
+            holder.tvPrimary.setText(String.format("%s", ViewHelper.formatPrice(loan.getGadget().getPrice())));
+            holder.tvSecondary.setText(String.format("Inventory Number: %s \nby %s", loan.getGadget().getInventoryNumber(), loan.getGadget().getManufacturer()));
             holder.tvTimestamp.setText(ViewHelper.formatShortDate(loan.getPickupDate()));
 
             // remaining time to due date
