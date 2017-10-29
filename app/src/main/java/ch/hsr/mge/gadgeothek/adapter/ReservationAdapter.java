@@ -83,4 +83,13 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
             this.emptyView = view.findViewById(R.id.empty_view);
         }
     }
+
+    public Reservation getReservation(int position){
+        return this.reservationList.get(position);
+    }
+
+    public void removeReservation(int position){
+        this.reservationList.remove(position);
+        this.notifyItemRemoved(position);
+    }
 }

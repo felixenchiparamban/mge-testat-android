@@ -1,6 +1,7 @@
 package ch.hsr.mge.gadgeothek.util;
 
 public class LibraryServiceUtil {
+
     private final static String SERVER_URL_PATTERN = "http://mge%d.dev.ifs.hsr.ch/public";
     private final static int DEFAULT_SERVER = 2;
 
